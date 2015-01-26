@@ -1,0 +1,7 @@
+.feed-list > li > i{
+  display: none;
+}
+
+.feed-list > li:hover > i{
+  display: block;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="rssApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RSS Mixer</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/screen.css" rel="stylesheet">
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+<div id="mockup">
+    <div class="page-header">
+        <h1>RSS Mixer
+            <small>UI Mockup (rough)</small>
+        </h1>
+    </div>
+    <div class="row clearfix" ng-controller="RssController">
+        <div class="col-md-4 column">
+            <h2>Saved Feeds (<span>{{feeds.length}}</span>)</h2>
+
+            <div class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="feed" placeholder="Feed URL" ng-model="addFeedInput"/>
+                    <button class="btn btn-primary" ng-click="addFeed()">
+                        Add Feed
+                    </button>
+                    <i class="glyphicon glyphicon-info-sign" rel="tooltip" data-toggle="tooltip" data-placement="right"
+                       title="Submits ajax.post to json/feeds.json"></i>
+                </div>
+            </div>
+            <h3>
+                Feeds
+                <i class="glyphicon glyphicon-info-sign" rel="tooltip" data-toggle="tooltip" data-placement="right"
+                   title="Loads by ajax.get to json/feeds.json"></i>
+            </h3>
+            <ul class="list-group feed-list">
+                <li ng-repeat="feed in feeds" class="list-group-item">
+                    <a href="{{feed.name}}" title="" target="_blank">{{feed.name}}</a>
+                    <i  class="glyphicon glyphicon-minus-sign pull-right"
+                        title="Remove feed"
+                        ng-click="removeFeed($index)"></i>
+                </li>
+            </ul>
+        </div>
+         <div class="col-md-8 column">
+            <h2>
+                Posts (<span>{{filteredPosts.length}}</span>)
+                <i class="glyphicon glyphicon-info-sign" rel="tooltip" data-toggle="tooltip" data-placement="right"
+                   title="Loads by ajax.get to json/posts.json"></i>
+            </h2>
+                
+            <div ng-repeat="post in filteredPosts = (posts | filter: filterPosts)">
+                <h3>{{post.title}}</h3>
+                <p>{{post.summary}}</p>
+                <p>Source: <a href="{{post.source}}" title="">{{post.source}}</a> | Author: <em>{{post.author}}</em><hr/></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('*[rel="tooltip"]').tooltip();
+        $('#taskDescription').tab();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "response": {
+    "status": "OK",
+    "result": [
+      {
+        "id": 1,
+        "name": "http://feeds.bbci.co.uk/news/rss.xml"
+      },
+      {
+        "id": 2,
+        "name": "http://staff.tumblr.com/rss"
+      },
+      {
+        "id": 3,
+        "name": "http://feeds.mysite.com/rss"
+      },
+      {
+        "id": 4,
+        "name": "http://pdl.telecom.co.uk/feed/rss.xml"
+      },
+      {
+        "id": 5,
+        "name": "http://feeds.google.com/apps/rss.xml"
+      }
+    ]
+  }
+}
